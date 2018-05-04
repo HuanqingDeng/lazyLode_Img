@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>懒加载图片</title>
+</head>
+<body>
+    <!-- 网页在渲染的时候，HTTP请求数量
+    chrome 性能最好，同时并发的请求数十几个
+    将图片下载放到dom ready 时间之后 将有效提升网页打开速度
+    占位图片， n张照片 url不一样 http请求数n
+    优化后 请求数量只有1
+    如果url一样就不会重复发送
+     -->
+    <img 
+    class="pic1"
+    src="http://static.youku.com/yk/vmanage/img/manage/video/mask.d53611efc6.png"
+    origin_src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525426885996&di=e78b4859b3e4f131cfffb825e82c0105&imgtype=0&src=http%3A%2F%2Feasyread.ph.126.net%2FORWSPWJq9MZLJV155TIZNQ%3D%3D%2F7916487018523587468.jpg" alt="">
+    <img 
+    class="pic2"
+    src="http://static.youku.com/yk/vmanage/img/manage/video/mask.d53611efc6.png"
+    origin_src="https://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E8%B5%B5%E4%B8%BD%E9%A2%96&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&cs=3629419300,2138894048&os=3646710450,2281391244&pn=0&rn=1&di=4632630230&ln=3960&fr=&fmq=1525417792006_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=&height=&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=11&pi=0&gsm=0&hs=2&objurl=http%3A%2F%2F06.imgmini.eastday.com%2Fmobile%2F20180503%2F20180503080551_e39e92aa38945216449c9ef09d8746a8_4.jpeg&rpstart=0&rpnum=0&adpicid=0" alt="">
+    <img 
+    class="pic2"
+    src="http://static.youku.com/yk/vmanage/img/manage/video/mask.d53611efc6.png"
+    origin_src="https://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E8%B5%B5%E4%B8%BD%E9%A2%96&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&cs=1097539448,3275465870&os=3537401758,1374995433&pn=6&rn=1&di=76984273880&ln=3960&fr=&fmq=1525417792006_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=&height=&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=11&pi=0&gsm=0&hs=2&objurl=http%3A%2F%2Fimg1.sevenfan.cn%2Fattachments%2F201804%2F10%2F14%2F131zl4fgf.jpg&rpstart=0&rpnum=0&adpicid=0" alt="">
+
+<script src="./lazyload.js"></script>
+<script>
+    // 用户已经看到网页了 dom ready 
+    // 优化图片下载，将其推后
+    window.onload=function(){
+        const img=document.querySelector('.pic1');
+        LazyLoadImage.setSrc(img);
+
+
+        // 懒加载图片 
+        // // 在页面打开后,重新下载图片
+        // const img=document.querySelector('.pic1');
+        // // origin_src自定义属性
+        // const url=img.getAttribute('origin_src');
+        // // console.log(url);
+
+        // // 不要直接url直接设置过去
+        // const oImg=document.createElement('img');
+        // oImg.style.display='none';
+        // document.body.appendChild(oImg);
+        // oImg.onload=function(){
+        //     // 幕后工作者已经下载了图片
+        //     // url一旦下载在浏览器缓存(静态)文件
+        //     img.src=url;
+        // }
+        // // 图片的下载时异步,图片有大小
+        // oImg.src=url;
+        
+        // // img.src=url;
+        // // img.setAttribute('src',url)
+    }
+</script>
+</body>
+</html>
